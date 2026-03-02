@@ -75,11 +75,11 @@ layers:
 
 ## commands (planned)
 
-devvedanta index <path>  
-devvedanta analyze-architecture <path>  
-devvedanta explain-module <module>  
-devvedanta find-duplicates <path>  
-devvedanta refactor-plan <path>  
+`devvedanta index <path>`  
+`devvedanta analyze-architecture <path>`  
+`devvedanta explain-module <module>`
+`devvedanta find-duplicates <path>`
+`devvedanta refactor-plan <path>`
 
 ---
 
@@ -96,3 +96,11 @@ llm explains, not measures.
 ## status
 
 in active development.
+
+---
+
+## license
+
+MIT
+
+---
