@@ -91,8 +91,8 @@ devvedanta refactor-plan <path>
 deterministic structure first.
 probabilistic reasoning second.
 
-metrics are computed, not guessed.
-llm explains, not measures.
+metrics are computed, not just guessed.
+llm explains, with real data.
 
 ---
 
