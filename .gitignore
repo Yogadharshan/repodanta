@@ -1,7 +1,29 @@
+# python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+
+# virtual environments
 .venv/
+venv/
+env/
+
+# env files
 .env
 .env.*
-.faiss
+
+# system
+.DS_Store
+
+# vector / embedding artifacts
+*.faiss
 vector_store/
+embeddings/
+
+# logs
+*.log
+
+# testing / temp
+.tmp/
+.cache/
