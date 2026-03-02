@@ -1,4 +1,4 @@
-# devvedanta
+# repodanta
 
 devvedanta is a local cli tool that analyzes a python codebase using
 both structural metrics and semantic retrieval.
