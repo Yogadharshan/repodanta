@@ -1,6 +1,6 @@
 # repodanta
 
-devvedanta is a local cli tool that analyzes a python codebase using
+repodanta is a local cli tool that analyzes a python codebase using
 both structural metrics and semantic retrieval.
 
 it is built as a learning experiment in system design,
@@ -76,11 +76,11 @@ layers:
 ## commands (planned)
 
 ```
-devvedanta index <path>
-devvedanta analyze-architecture <path>
-devvedanta explain-module <module>
-devvedanta find-duplicates <path>
-devvedanta refactor-plan <path>
+repodanta index <path>
+repodanta analyze-architecture <path>
+repodanta explain-module <module>
+repodanta find-duplicates <path>
+repodanta refactor-plan <path>
 
 ```
 
