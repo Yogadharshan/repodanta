@@ -1,7 +1,5 @@
 from src.models import Repo, ModuleNode
-from src import models
 from ast import Import, parse, walk, ImportFrom
-from pathlib import Path
 
 def enrich_dependencies(repo: Repo) -> None:
     """
@@ -27,12 +25,11 @@ def enrich_dependencies(repo: Repo) -> None:
                         elif isinstance(node, ImportFrom):
                             module_name = node.module
                             if module_name:
-                                full = module_name + "." + alias.name
-                                normalized_id = full + ".py"
+                                normalized_id = module_name + ".py"
                                 if normalized_id in repo.modules:
                                     imports.add(normalized_id)  # Add the normalized module name with .py extension
                                 else:
-                                    imports.add(full + ".py")   # Fallback to the full module name with .py extension
+                                    imports.add(module_name + ".py")   # Fallback to the full module name with .py extension
                     
 
                     module.imports = list(imports)
