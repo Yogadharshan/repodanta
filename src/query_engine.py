@@ -13,8 +13,6 @@ def build_chunk_context(chunks):
             continue
         if c.function_name == "main":
             continue
-
-        print(f"retrieved chunk: {[c.chunk_id for c in chunks]}")
         
         context += f"""
         module: {c.module_id}
