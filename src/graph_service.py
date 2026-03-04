@@ -13,8 +13,11 @@ def analyze_structure(repo: Repo) -> None:
         # Fan-out is the number of imports this module has
         module.fan_out = len(module.imports)
 
-        # Fan-in is the number of modules that import this module
-        module.fan_in = sum(1 for m in module_map.values() if module.module_id in m.imports)
+            # Fan-in is the number of modules that import this module
+        for module in module_map.values():
+            for imp in module.imports:
+                if imp in module_map:
+                    module_map[imp].fan_in += 1
 
         # Calculate risk score (simple heuristic: fan-in + fan-out)
         module.risk_score = (module.fan_in * 2) + module.fan_out

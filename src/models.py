@@ -21,6 +21,7 @@ class FunctionNode:
     module_id: str
     start_line: int
     end_line: int
+    calls : list[str] = field(default_factory=list)
 
 @dataclass
 class Repo:
