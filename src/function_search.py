@@ -1,4 +1,4 @@
-from src.models import Repo
+from models import Repo
 
 def find_functions_calling(repo: Repo, symbol: str):
 

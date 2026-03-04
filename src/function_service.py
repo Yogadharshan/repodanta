@@ -1,4 +1,4 @@
-from src.models import Repo, FunctionNode
+from models import Repo, FunctionNode
 import ast
 
 

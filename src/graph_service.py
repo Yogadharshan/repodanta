@@ -1,4 +1,4 @@
-from src.models import Repo
+from models import Repo
 
 def analyze_structure(repo: Repo) -> None:
     """

@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "repodanta"
+version = "0.1.0"
+description = "repository intelligence engine"
+authors = [{name="yogadharshan"}]
+
+dependencies = [
+    "faiss-cpu",
+    "numpy",
+    "requests",
+    "sentence-transformers"
+]
+
+[project.scripts]
+repodanta = "cli:run"
+
+[tool.setuptools.packages.find]
+where = ["src"]

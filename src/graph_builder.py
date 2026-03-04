@@ -1,4 +1,4 @@
-from src.models import Repo
+from models import Repo
 
 def build_module_graph(repo: Repo):
 

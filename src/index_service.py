@@ -1,6 +1,6 @@
 from pathlib import Path
-from src.config import ignore_folders, supported_extensions
-from src.models import ModuleNode, FunctionNode, Repo
+from config import ignore_folders, supported_extensions
+from models import ModuleNode, FunctionNode, Repo
 
 
 

@@ -1,4 +1,4 @@
-from src.models import Repo, ModuleNode
+from models import Repo, ModuleNode
 from ast import Import, parse, walk, ImportFrom
 
 def enrich_dependencies(repo: Repo) -> None:

@@ -1,4 +1,4 @@
-from src.models import Repo
+from models import Repo
 
 
 def trace_call_chain(repo: Repo, target: str):
