@@ -12,6 +12,7 @@ from src.query_engine import answer_query
 from src.graph_builder import build_graphs
 from src.function_search import find_functions_calling
 from src.call_tracer import trace_call_chain
+from src.duplicate_detector import find_duplicates
 
 def main():
 
@@ -57,8 +58,15 @@ def main():
     chain = trace_call_chain(repo, "read_text")
 
     print("\ncall chain to read_text:\n")
-    
+
     for caller, callee in chain:
         print(f"{caller} → {callee}")
+
+    duplicates = find_duplicates(chunks, embeddings)
+
+    print("\nduplicates:\n")
+    for d in duplicates:
+        print(d["chunk1"], "<->", d["chunk2"], "| similarity:", round(d["similarity"], 3))
+
 if __name__ == "__main__":
     main()
