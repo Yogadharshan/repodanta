@@ -1,2 +1,0 @@
-[console_scripts]
-repodanta = repodanta.cli:run

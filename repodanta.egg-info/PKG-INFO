@@ -1,9 +1,0 @@
-Metadata-Version: 2.4
-Name: repodanta
-Version: 0.1.0
-Summary: repository intelligence engine
-Author: yogan
-Requires-Dist: faiss-cpu
-Requires-Dist: numpy
-Requires-Dist: requests
-Requires-Dist: sentence-transformers
