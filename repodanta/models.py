@@ -29,6 +29,8 @@ class Repo:
     modules: Dict[str, ModuleNode]
     total_lines:int = 0
     total_modules:int = 0
+    module_graph: dict[str, list[str]] = field(default_factory=dict)
+    function_graph: dict[str, list[str]] = field(default_factory=dict)
 
 
 @dataclass

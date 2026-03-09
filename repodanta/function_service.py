@@ -1,4 +1,4 @@
-from models import Repo, FunctionNode
+from repodanta.models import Repo, FunctionNode
 import ast
 
 
@@ -49,11 +49,6 @@ def extract_functions(repo: Repo) -> None:
 
                     # remove duplicate calls
                     fn.calls = list(set(fn.calls))
-
-                    print(
-                        f"Extracted function {fn.name} from module {module.module_id} "
-                        f"at lines {fn.start_line}-{fn.end_line}"
-                    )
 
                     functions.append(fn)
 

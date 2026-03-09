@@ -1,12 +1,12 @@
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "repodanta"
 version = "0.1.0"
 description = "repository intelligence engine"
-authors = [{name="yogadharshan"}]
+authors = [{name = "yogan"}]
 
 dependencies = [
     "faiss-cpu",
@@ -16,7 +16,8 @@ dependencies = [
 ]
 
 [project.scripts]
-repodanta = "cli:run"
+repodanta = "repodanta.cli:run"
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["."]
+include = ["repodanta*"]

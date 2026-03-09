@@ -1,7 +1,7 @@
 from pathlib import Path
-from config import ignore_folders, supported_extensions
-from models import ModuleNode, FunctionNode, Repo
-
+from repodanta.config import ignore_folders, supported_extensions, ignored_extensions
+from repodanta.models import ModuleNode, FunctionNode, Repo
+from tqdm import tqdm
 
 
 def index_repo(path):
@@ -23,7 +23,14 @@ def scan_files(repo_root: Path) -> list[Path]:
 
     files = []
 
-    for file in repo_root.rglob("*"):
+    for file in tqdm(repo_root.rglob("*"), desc="scanning files"):
+        # Skip files in ignored folders
+        if any(part in ignore_folders for part in file.parts):
+            continue
+
+        if file.suffix in ignored_extensions:
+            continue
+
         if file.is_file() and file.suffix in supported_extensions:
             if not any(ignored in file.parts for ignored in ignore_folders):
                 files.append(file) # it is Path object, we can convert to string later if needed

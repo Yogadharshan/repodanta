@@ -1,7 +1,10 @@
-from models import Chunk, Repo, ModuleNode, FunctionNode
+from repodanta.models import Chunk, Repo, ModuleNode, FunctionNode
 
 
 def chunk_repo(repo: Repo) -> list[Chunk]:
+
+    MAX_CHUNK_LINES = 80
+
     chunks = []
     for module in repo.modules.values():
         try:
@@ -14,10 +17,19 @@ def chunk_repo(repo: Repo) -> list[Chunk]:
         # case 1: module has functions, chunk by function
         if module.functions:
             for fn in module.functions:
+
+                if fn.name.startswith("__"):
+                    continue
+
                 # python AST lines are 1-indexed
                 start = fn.start_line - 1
                 end = fn.end_line
-                code = "\n".join(lines[start:end]).strip()
+                code = lines[start:end]
+                code_lines = code[:MAX_CHUNK_LINES]
+                if len(code_lines) > MAX_CHUNK_LINES:
+                    code_lines = code.splitlines()[:MAX_CHUNK_LINES]
+
+                code = "\n".join(code_lines)
 
                 content = code.strip() # Add more metadata as needed
 
@@ -35,7 +47,15 @@ def chunk_repo(repo: Repo) -> list[Chunk]:
                 chunks.append(chunk)
             #case 2: no functions, whole file chunk
         else:
-            code = "\n".join(lines).strip()
+            start = 0
+            end = len(lines)
+            code = lines[start:end]
+            code_lines = code[:MAX_CHUNK_LINES]
+
+            # truncate long files to avoid hitting token limits
+            if len(code_lines) > MAX_CHUNK_LINES:
+                code_lines = code.splitlines()[:MAX_CHUNK_LINES]
+            code = "\n".join(code_lines)
 
             content = code.strip() # Add more metadata as needed
             if not content:

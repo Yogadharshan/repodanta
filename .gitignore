@@ -18,8 +18,10 @@ env/
 
 # vector / embedding artifacts
 *.faiss
+*.pkl
 vector_store/
 embeddings/
+.repodanta/
 
 # logs
 *.log

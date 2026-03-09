@@ -1,4 +1,4 @@
-from models import Repo
+from repodanta.models import Repo
 
 def find_functions_calling(repo: Repo, symbol: str):
 
