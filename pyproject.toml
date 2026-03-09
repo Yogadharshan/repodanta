@@ -12,7 +12,8 @@ dependencies = [
     "faiss-cpu",
     "numpy",
     "requests",
-    "sentence-transformers"
+    "sentence-transformers",
+    "tqdm"
 ]
 
 [project.scripts]
