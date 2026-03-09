@@ -29,3 +29,4 @@ embeddings/
 # testing / temp
 .tmp/
 .cache/
+repodanta.egg-info/
