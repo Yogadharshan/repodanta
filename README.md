@@ -94,9 +94,8 @@ the incoming request and returns the handler function.
 
 ## install
 ```bash
-git clone https://github.com/Yogadharshan/repodanta.git
-cd repodanta
-pip install -e .
+pip install repodanta
+repodanta --help
 ```
 
 **requirements**
@@ -108,7 +107,8 @@ ollama serve
 
 > on first run, sentence-transformers will download the embedding model automatically.
 > you may see an unauthenticated warning from huggingface — this is harmless.
-
+# gpu support
+repodanta's inference runs through ollama. gpu acceleration depends on ollama's hardware compatibility. check ollama's documentation for supported gpus. amd gpu support is limited by ollama, not repodanta.
 ## how it works
 
 ```
