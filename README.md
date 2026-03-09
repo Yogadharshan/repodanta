@@ -98,6 +98,10 @@ pip install repodanta
 repodanta --help
 ```
 
+if the repodanta command is not found after install, add pip's bin folder to your PATH:
+bashecho 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+
 **requirements**
 - ollama running locally with qwen2.5
 ```bash
