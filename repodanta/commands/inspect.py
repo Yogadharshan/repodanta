@@ -1,5 +1,14 @@
 from repodanta.commands.core import load_repo
+import tomllib
+from pathlib import Path
 
+def get_repo_version(path: str) -> str:
+    toml_path = Path(path) / "pyproject.toml"
+    if toml_path.exists():
+        with open(toml_path, "rb") as f:
+            data = tomllib.load(f)
+            return data.get("project", {}).get("version", "unknown")
+    return "unknown"
 
 def run_inspect(args):
     repo = load_repo(args.path)
@@ -10,6 +19,7 @@ def run_inspect(args):
     total_functions = sum(len(m.functions) for m in modules)
     avg_functions = total_functions / total_modules if total_modules else 0
 
+    version = get_repo_version(args.path)
     largest_module = max(modules, key=lambda m: m.lines_of_code)
 
     largest_function = None
@@ -25,6 +35,8 @@ def run_inspect(args):
     top_risk = sorted(modules, key=lambda m: (m.fan_in * 2 + m.fan_out), reverse=True)[:3]
 
     print("\nrepository overview\n")
+    print("-" * 40)
+    print(f"version           : {version}")
     print("-" * 40)
     print(f"modules           : {total_modules}")
     print(f"functions         : {total_functions}")
