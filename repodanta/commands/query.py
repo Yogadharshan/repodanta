@@ -6,5 +6,4 @@ def run_query(args):
     repo = load_repo(args.path)
     index, chunks, _ = load_index_and_chunks(repo, args.path)
     answer = answer_query(args.question, repo, index, chunks)
-    print("\nanswer\n")
-    print(answer)
+
