@@ -1,4 +1,4 @@
-from repodanta.models import Chunk, Repo, ModuleNode, FunctionNode
+from models import Chunk, Repo, ModuleNode, FunctionNode
 
 
 def chunk_repo(repo: Repo) -> list[Chunk]:
