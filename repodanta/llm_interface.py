@@ -1,25 +1,23 @@
 import requests # type: ignore
 import json
-
-OLLAMA_URL = "http://localhost:11434/api/generate"
-MODEL = "qwen2.5:7b"
+from repodanta import config
 
 def ask_llm(prompt: str) -> str:
     try:
         full_response = ""
         payload = {
-            "model": MODEL,
+            "model": config.ollama_model,
             "prompt": prompt,
-            "stream": True, # TODO: handle streaming response
+            "stream": True,
             "options": {
                 "num_predict": 1024,
                 "temperature": 0.3
             }
         }
-        
+
         print("\nanswer\n")
-        
-        response = requests.post(OLLAMA_URL, json=payload, timeout=600)
+
+        response = requests.post(config.ollama_url, json=payload, timeout=600)
         for chunk in response.iter_lines():
             if chunk:
                 data = json.loads(chunk.decode("utf-8"))

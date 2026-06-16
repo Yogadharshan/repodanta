@@ -1,9 +1,10 @@
+from repodanta import config
 from repodanta.models import Chunk, Repo, ModuleNode, FunctionNode
 
 
 def chunk_repo(repo: Repo) -> list[Chunk]:
 
-    MAX_CHUNK_LINES = 80
+    MAX_CHUNK_LINES = config.chunk_size
 
     chunks = []
     for module in repo.modules.values():

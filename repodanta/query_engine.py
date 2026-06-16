@@ -1,3 +1,4 @@
+from repodanta import config
 from repodanta.embedder import embed_query
 from repodanta.models import Repo
 from repodanta.retriever import retrieve
@@ -49,7 +50,7 @@ def answer_query(query, repo, index, chunks):
         func_names = {f[1] for f in entities["functions"]}
         candidate_chunks = [c for c in chunks if c.function_name in func_names]
 
-    retrieved = retrieve(query_vec, index, candidate_chunks, query, top_k=5)
+    retrieved = retrieve(query_vec, index, candidate_chunks, query, top_k=config.top_k)
 
     architecture = build_architecture_summary(repo)
     code_context = build_chunk_context(retrieved)

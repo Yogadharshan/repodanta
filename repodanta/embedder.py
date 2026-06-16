@@ -1,6 +1,7 @@
 from sentence_transformers import SentenceTransformer
+from repodanta import config
 
-model = SentenceTransformer("all-MiniLM-L6-v2")
+model = SentenceTransformer(config.embedding_model)
 
 # Embed a list of code chunks into vectors
 def embed_chunks(chunks):

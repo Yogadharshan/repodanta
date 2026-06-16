@@ -1,4 +1,5 @@
 import os
+from repodanta import config
 from repodanta.index_service import index_repo
 from repodanta.dependency_service import enrich_dependencies
 from repodanta.graph_service import analyze_structure
@@ -20,15 +21,12 @@ def load_repo(path: str):
 
 
 def load_index_and_chunks(repo, path: str):
-    os.makedirs(".repodanta", exist_ok=True)
-    index_file = ".repodanta/index.faiss"
-    chunks_file = ".repodanta/chunks.pkl"
-    hash_file = ".repodanta/repo_hash.txt"
+    os.makedirs(config.storage_dir, exist_ok=True)
 
-    if check_repo_hash(repo, hash_file) and os.path.exists(index_file) and os.path.exists(chunks_file):
+    if check_repo_hash(repo, config.hash_file) and os.path.exists(config.index_file) and os.path.exists(config.chunks_file):
         print("repo unchanged. loading index.")
-        index = load_index(index_file)
-        chunks = load_chunks(chunks_file)
+        index = load_index(config.index_file)
+        chunks = load_chunks(config.chunks_file)
         return index, chunks, None
 
     print("building repository index...")
@@ -36,7 +34,7 @@ def load_index_and_chunks(repo, path: str):
     print(f"chunks created: {len(chunks)}")
     embeddings = embed_chunks(chunks)
     index = build_index(embeddings)
-    save_index(index, index_file)
-    save_chunks(chunks, chunks_file)
-    save_repo_hash(repo, hash_file)
+    save_index(index, config.index_file)
+    save_chunks(chunks, config.chunks_file)
+    save_repo_hash(repo, config.hash_file)
     return index, chunks, embeddings
