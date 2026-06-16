@@ -2,8 +2,6 @@
 
 repository analysis tool for developers who need to understand large codebases fast.
 
-no docs needed. just point it at a repo.
-
 ---
 
 ## what it does
