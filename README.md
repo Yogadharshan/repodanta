@@ -67,7 +67,7 @@ repodanta trace /path/to/repo get_request_handler
 ```
 call chain
 ----------------------------------------
-fastapi.routing.py:get_route_handler
+fastapi.routing.py:get_route_handlerUpdate README to remove 'no docs needed' line
 ?:get_request_handler
 ----------------------------------------
 ```
@@ -126,10 +126,10 @@ repodanta doesn't just describe code. it understands how the system is connected
 ---
 
 ## built with
-- python ast — static analysis
-- sentence-transformers — code embeddings
-- faiss — vector search
-- ollama (qwen2.5) — local ai reasoning, no api key needed
+- python ast -> static analysis
+- sentence-transformers -> code embeddings
+- faiss -> vector search
+- ollama (qwen2.5) -> local ai reasoning, no api key needed
 
 ---
 
