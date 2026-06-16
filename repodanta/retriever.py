@@ -1,6 +1,8 @@
-# Retriever module: Given a query vector, retrieve relevant code chunks and boost scores based on query relevance
-def retrieve(query_vec, index, chunks, query, top_k=5):
+from typing import Any
+from repodanta.models import Chunk
 
+
+def retrieve(query_vec: Any, index: Any, chunks: list[Chunk], query: str, top_k: int = 5) -> list[Chunk]:
     scores, indices = index.search(query_vec, top_k * 3)
 
     candidates = []
@@ -12,18 +14,12 @@ def retrieve(query_vec, index, chunks, query, top_k=5):
 
         chunk = chunks[idx]
 
-
         final_score = float(score)
 
-        # boost if module name appears in query
         module_name = chunk.module_id.split("/")[-1].replace(".py", "")
 
         if module_name in query:
             final_score += 0.5
-        
-        # boost if function name appears in query
-        if chunk.function_name and chunk.function_name in query:
-            final_score += 0.6
 
         if chunk.function_name and chunk.function_name in query:
             final_score += 1.0

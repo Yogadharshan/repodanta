@@ -28,12 +28,27 @@ def extract_functions(repo: Repo) -> None:
 
                     seen_functions.add(key)
 
+                    decorators = []
+                    for dec in node.decorator_list:
+                        if isinstance(dec, ast.Name):
+                            decorators.append(dec.id)
+                        elif isinstance(dec, ast.Attribute):
+                            decorators.append(dec.attr)
+                        elif isinstance(dec, ast.Call):
+                            if isinstance(dec.func, ast.Name):
+                                decorators.append(dec.func.id)
+                            elif isinstance(dec.func, ast.Attribute):
+                                decorators.append(dec.func.attr)
+
                     fn = FunctionNode(
                         name=node.name,
                         module_id=module.module_id,
                         start_line=node.lineno,
                         end_line=node.end_lineno or node.lineno,
-                        calls=[]
+                        calls=[],
+                        qualified_name=f"{module.module_id}.{node.name}",
+                        decorators=decorators,
+                        is_async=isinstance(node, ast.AsyncFunctionDef),
                     )
 
                     # scan inside the function body
