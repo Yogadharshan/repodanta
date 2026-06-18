@@ -9,7 +9,7 @@ def retrieve(query_vec: Any, index: Any, chunks: list[Chunk], query: str, top_k:
 
     for score, idx in zip(scores[0], indices[0]):
 
-        if idx >= len(chunks):
+        if idx < 0 or idx >= len(chunks):
             continue
 
         chunk = chunks[idx]
@@ -29,17 +29,12 @@ def retrieve(query_vec: Any, index: Any, chunks: list[Chunk], query: str, top_k:
     # sort again after boosting
     candidates.sort(key=lambda x: x[0], reverse=True)
 
-    results = [c[1] for c in candidates[:top_k]]
+    # deduplicate before slicing so duplicates don't consume top_k slots
+    seen: set[str] = set()
+    unique_candidates = []
+    for score, chunk in candidates:
+        if chunk.chunk_id not in seen:
+            unique_candidates.append((score, chunk))
+            seen.add(chunk.chunk_id)
 
-    # deduplicate results based on chunk_id
-    seen = set()
-    unique = []
-
-    for r in results:
-        if r.chunk_id not in seen:
-            unique.append(r)
-            seen.add(r.chunk_id)
-    
-    results = unique
-
-    return results
+    return [c[1] for c in unique_candidates[:top_k]]

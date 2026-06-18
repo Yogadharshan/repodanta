@@ -31,7 +31,6 @@ embeddings/
 .cache/
 repodanta.egg-info/
 
-tests/*
 architecture.md
 migration_plan.md
 
