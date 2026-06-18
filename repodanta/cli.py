@@ -1,8 +1,4 @@
 import argparse
-from repodanta.commands.inspect import run_inspect
-from repodanta.commands.trace import run_trace
-from repodanta.commands.query import run_query
-
 
 def run():
     parser = argparse.ArgumentParser(
@@ -29,8 +25,11 @@ def run():
         return
 
     if args.command == "query":
+        from repodanta.commands.trace import run_trace
         run_query(args)
     elif args.command == "inspect":
+        from repodanta.commands.inspect import run_inspect
         run_inspect(args)
     elif args.command == "trace":
+        from repodanta.commands.query import run_query
         run_trace(args)
