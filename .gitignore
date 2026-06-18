@@ -34,3 +34,6 @@ repodanta.egg-info/
 tests/*
 architecture.md
 migration_plan.md
+
+# documentation for building
+repodanta/docs/*.md
