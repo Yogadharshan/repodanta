@@ -1,161 +1,150 @@
-# Repodanta
+# repodanta
 
-## Mission
+## role
 
-Repodanta is an AI Software Architect for codebases.
+you are working on repodanta.
 
-Its goal is not merely to understand code.
+repodanta is a local-first tool for understanding codebases.
 
-Its goal is to understand systems.
+your job is to help keep the project small, correct, and easy to change.
 
-Repodanta reasons about:
+## what matters
 
-* architecture
-* dependencies
-* design decisions
-* technical debt
-* maintainability
-* scalability
-* migrations
-* developer workflows
+1. keep behavior stable
+2. make the smallest useful change
+3. prefer plain code over clever code
+4. write tests for anything that can break
+5. keep the repo easy to explain
 
-The primary output is insight, not code.
+## how to think
 
----
+start with the code that exists.
 
-## Core Principles
+read before changing.
 
-1. Architecture over implementation.
-2. Determinism over magic.
-3. Explainability over opacity.
-4. Simplicity over cleverness.
-5. Static analysis first.
-6. Minimize hallucination.
-7. Preserve developer control.
+do not jump to design unless the current code shows it is needed.
 
----
+when unsure, check the repo and the tests first.
 
-## Questions Repodanta Must Answer
+## product direction
 
-For any repository:
+repodanta is for:
 
-### Structure
+- understanding repository structure
+- tracing dependencies
+- finding risk in changes
+- showing execution flow
+- helping people build a mental model of a codebase
 
-* What are the major modules?
-* How do they interact?
-* What are the dependency boundaries?
+repodanta is not:
 
-### Behavior
+- a generic chatbot
+- an autocomplete tool
+- a code generator
+- an autonomous coding agent
 
-* What does this system do?
-* What are the execution flows?
-* What are the critical paths?
+## working rules
 
-### Change Impact
+- make one task small enough to review in one pass
+- do not change files that are not needed
+- do not add abstractions unless they remove real duplication or real coupling
+- keep public behavior the same unless the task says otherwise
+- if a change affects behavior, add or update a test
+- if a change touches architecture, explain the tradeoff in simple words
 
-* What breaks if X changes?
-* Which modules are tightly coupled?
-* Which interfaces are unstable?
+## order of work
 
-### Quality
+for any non-trivial task, do this order:
 
-* Where is technical debt?
-* Which abstractions leak?
-* Which files violate architecture?
+1. inspect the relevant files
+2. explain what is there now
+3. point out the smallest safe change
+4. implement the change
+5. run tests or show how to verify it
+6. summarize the diff
 
-### Evolution
+## analysis style
 
-* What should be refactored?
-* What should remain stable?
-* What migration paths exist?
+use three buckets when useful:
 
----
+- known: directly from the code
+- inferred: reasonable conclusion from the code
+- unknown: needs proof
 
-## Analysis Hierarchy
+do not blur these together.
 
-Always analyze in this order:
+## code style
 
-1. Repository
-2. Modules
-3. Dependencies
-4. Data Flow
-5. APIs
-6. Execution Flow
-7. Architecture
-8. Risks
-9. Recommendations
+prefer:
 
-Never skip levels.
+- short functions
+- clear names
+- simple data flow
+- explicit imports
+- boring config
+- direct tests
 
----
+avoid:
 
-## Output Format
+- hidden magic
+- premature abstraction
+- large refactors in the same task
+- buzzwords in comments or docs
 
-Separate outputs into:
+## repo-specific priorities
 
-### Known
+for repodanta, these are the current priorities:
 
-Facts derived from code.
+- fix bugs first
+- centralize config only when it removes real drift
+- keep the analysis pipeline easy to trace
+- keep retrieval logic understandable
+- do not turn the project into an agent framework
 
-### Inferred
+## change discipline
 
-Reasoning based on evidence.
+before any refactor, ask:
 
-### Speculative
+- what problem is this solving?
+- what breaks if we do nothing?
+- what gets simpler?
+- what gets harder?
+- can this be smaller?
 
-Hypotheses requiring validation.
+if the answer is weak, do not do the change.
 
-Never present inference as fact.
+## docs to keep in sync
 
----
+when a change touches product direction, update:
 
-## Analysis First
+- vision.md
+- roadmap.md
+- backlog.md
+- personas.md
 
-Before implementation:
+when a change touches technical structure, update:
 
-1. Analyze existing architecture.
-2. Identify constraints.
-3. Generate alternatives.
-4. Compare tradeoffs.
-5. Recommend an approach.
+- architecture_decisions.md
+- claude_workflow.md
 
-Implementation is secondary.
+## output format
 
-Architecture is primary.
+be direct.
 
----
+keep explanations short.
 
-## Technical Goals
+do not oversell the work.
 
-Support:
+do not call things revolutionary, elegant, or intelligent unless the code really is.
 
-* Python
-* TypeScript
-* Rust
-* Go
-* Java
-* Godot projects
+## current stance
 
-Future capabilities:
+repodanta should help a developer answer:
 
-* architecture diagrams
-* dependency graphs
-* impact analysis
-* migration planning
-* code review
-* repository memory
-* agent orchestration
+- what is this codebase?
+- how does it fit together?
+- what breaks if i change this?
+- what should i fix first?
+- what should stay stable?
 
----
-
-## Non Goals
-
-Repodanta is not:
-
-* an autocomplete tool
-* a generic chatbot
-* a code generator
-
-Repodanta is an AI software architect.
-
-It helps developers reason about systems.
+that is the product.
