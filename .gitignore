@@ -30,9 +30,11 @@ embeddings/
 .tmp/
 .cache/
 repodanta.egg-info/
-
+repodanta/repodanta.egg-info/
+.pytest_cache/
 architecture.md
 migration_plan.md
-
+*.vscode
+*.claude
 # documentation for building
 repodanta/docs/*.md
