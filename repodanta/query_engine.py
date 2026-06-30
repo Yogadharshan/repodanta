@@ -55,8 +55,9 @@ def answer_query(query, repo, index, chunks):
     architecture = build_architecture_summary(repo)
     code_context = build_chunk_context(retrieved)
 
+    repo_name = repo.root.name
     prompt = f"""
-you are analyzing a software repository called repodanta.
+you are analyzing a software repository called {repo_name}.
 answer the user's question using only the provided code snippets.
 
 rules:

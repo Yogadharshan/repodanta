@@ -27,9 +27,6 @@ def chunk_repo(repo: Repo) -> list[Chunk]:
                 end = fn.end_line
                 code = lines[start:end]
                 code_lines = code[:MAX_CHUNK_LINES]
-                if len(code_lines) > MAX_CHUNK_LINES:
-                    code_lines = code.splitlines()[:MAX_CHUNK_LINES]
-
                 code = "\n".join(code_lines)
 
                 content = code.strip() # Add more metadata as needed
@@ -52,10 +49,6 @@ def chunk_repo(repo: Repo) -> list[Chunk]:
             end = len(lines)
             code = lines[start:end]
             code_lines = code[:MAX_CHUNK_LINES]
-
-            # truncate long files to avoid hitting token limits
-            if len(code_lines) > MAX_CHUNK_LINES:
-                code_lines = code.splitlines()[:MAX_CHUNK_LINES]
             code = "\n".join(code_lines)
 
             content = code.strip() # Add more metadata as needed

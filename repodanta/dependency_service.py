@@ -2,10 +2,6 @@ from repodanta.models import Repo
 from ast import Import, ImportFrom, parse, walk
 
 
-from repodanta.models import Repo
-from ast import Import, ImportFrom, parse, walk
-
-
 def enrich_dependencies(repo: Repo) -> None:
     for module in repo.modules.values():
         if module.language != "py":

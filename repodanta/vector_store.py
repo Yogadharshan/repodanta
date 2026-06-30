@@ -2,11 +2,11 @@ import faiss
 import numpy as np
 import pickle
 
-def save_chunks(chunks, path=".repodanta/repodanta_chunks.pkl"):
+def save_chunks(chunks, path=".repodanta/chunks.pkl"):
     with open(path, "wb") as f:
         pickle.dump(chunks, f)
 
-def load_chunks(path=".repodanta/repodanta_chunks.pkl"):
+def load_chunks(path=".repodanta/chunks.pkl"):
     with open(path, "rb") as f:
         return pickle.load(f)
     
@@ -30,10 +30,10 @@ def search_index(index, query_vec, top_k=5):
 
     return scores, indices
 
-def save_index(index, path=".repodanta/repodanta_index.faiss"):
+def save_index(index, path=".repodanta/index.faiss"):
     faiss.write_index(index, path)
 
-def load_index(path=".repodanta/repodanta_index.faiss"):
+def load_index(path=".repodanta/index.faiss"):
     return faiss.read_index(path)
 
 
